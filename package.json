@@ -1,0 +1,21 @@
+{
+  "name": "content2json",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "content2json": "./bin/cli.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "glob": "^7.0.3",
+    "merge-deep": "^2.0.2",
+    "minimist": "^1.2.0",
+    "toml": "^2.3.0",
+    "yamljs": "^0.2.6"
+  }
+}
