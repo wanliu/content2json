@@ -14,22 +14,27 @@ var argv = parseArgs(process.argv);
 
 if (argv.parse) {
   // files = argv.parse;
+
+  console.log(parseFiles(argv.parse));  
+}
+
+
+
+// if (argv.sortBy) {
   
-  // if (typeof argv.parse === 'string') {
-  //   files = [argv.parse];
-  // } else {
-  //   files = argv.parse;
-  // }
+// }
+
+// if (argv.filter) {
   
-  // console.log(files);
-  
-  glob(argv.parse, function (err, files) {
+// }
+
+function parseFiles(globFiles) {
+  var results = 
+  glob(globFiles, function (err, files) {
     if (err) {
       return console.error(err.stack);
     }
-    
-    var results = {};
-    
+
     files.forEach(function (file) {
       try {
         data = fs.readFileSync(file, { encoding: 'utf8' });
@@ -69,15 +74,6 @@ if (argv.parse) {
       }
     });
     
-    console.log(results); 
   });
+  return results;  
 }
-
-// if (argv.sortBy) {
-  
-// }
-
-// if (argv.filter) {
-  
-// }
-
