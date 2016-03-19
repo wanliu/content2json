@@ -18,6 +18,7 @@ function usage() {
            "                              second order with date order by default asc\n\n" +
            "   -f, --filter             Filter every search select valid row with contents\n" +
            "   -s, --schema             Output format, contains: 'array, full, file'\n";
+           "   -e, --execute            Execute a shell script, or program with every json\n";
 
   console.log(output);
 }
