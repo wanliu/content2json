@@ -16,9 +16,13 @@ function usage() {
            "                                --sort='price desc#number, date'\n\n" +
            "                              # => sort price as number with order desc and\n" +
            "                              second order with date order by default asc\n\n" +
-           "   -f, --filter             Filter every search select valid row with contents\n" +
+           "   -f, --filter             Filter every search select valid row with contents\n\n" +
+           "                              Example:\n" +
+           "                                --filter='price >= 60'\n\n" +
+           "                              # => content['price'] >= 60\n\n" +
            "   -s, --schema             Output format, contains: 'array, full, file'\n";
            "   -e, --execute            Execute a shell script, or program with every json\n";
+           "   --ignore null            Ignore parse value is null error\n";
 
   console.log(output);
 }
