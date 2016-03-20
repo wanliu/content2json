@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 var parseArgs = require('minimist')
-
+// var exec = require('child_process').execFile;
+var exec = require('exec');
 var Parser = require('../lib/parser');
-
 
 function usage() {
   
@@ -27,57 +27,6 @@ function usage() {
   console.log(output);
 }
 
-
-/**
- * sort 
- * 
- * Example:
- *   --sort='date,desc'
- *   --sort='date desc, name'
- *  
- */
-
-
-// if (argv.sort) {
-//   var sorter = parseSort(argv.sort);
-// }
-
-/**
- * filter
- * 
- * Example:
- *    --filter='price > 188'
- */
-// if (argv.filter) {
-//   var filter = parseFilter(argv.filter);  
-// }
-
-/**
- * columns
- * 
- * Example:
- *    --column=cover_url=>coverUrl  
- */
-
-// if (argv.columns) {
-//   var columner = parseColumn(argv.columns);
-// }
-
-/**
- * schema
- * 
- * Exmaple:
- * 
- *    --schema={$fullPathname: $data} // default
- *    or 
- *    --schema=[$data.Values...]
- */
-
-// if (argv.schema) {
-//   var schemer = parseSchema(argv.schema);
-// }
-
-
 function main() {
   try {
     var argv = parseArgs(process.argv);
@@ -85,7 +34,28 @@ function main() {
     if (argv.h || argv.help) return usage();
     
     var results = Parser.parse(argv);
-    console.log(results);    
+    var execArg = argv.e || argv.execute;
+    
+    if (execArg) {
+      results.forEach(function(result) {
+        var cmdStr = execArg.replace(/\$\d+/, function(m) {
+          if (m === '$1') {
+            return JSON.stringify(result);   
+          } else {
+            return '';
+          }
+        });
+        
+        exec(cmdStr, function(err, stdout, stderr) {
+          if (err) {
+            throw err;
+          }
+          console.log(stdout);          
+        });
+      });
+    } else {
+      console.log(results);    
+    }
   } catch(e) {
     console.error(e.stack);
     usage();
