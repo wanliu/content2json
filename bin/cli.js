@@ -4,6 +4,7 @@ var parseArgs = require('minimist')
 // var exec = require('child_process').execFile;
 var exec = require('exec');
 var Parser = require('../lib/parser');
+var debug = require('debug')('Content2Json');
 
 function usage() {
   
@@ -23,6 +24,7 @@ function usage() {
            "   -s, --schema             Output format, contains: 'array, full, file'\n";
            "   -e, --execute            Execute a shell script, or program with every json\n";
            "   --ignore null            Ignore parse value is null error\n";
+           "   -v, --verbose            Print debugging information\n";
 
   console.log(output);
 }
@@ -39,13 +41,15 @@ function main() {
     if (execArg) {
       results.forEach(function(result) {
         var cmdStr = execArg.replace(/\$\d+/, function(m) {
+          console.log(m);
           if (m === '$1') {
-            return JSON.stringify(result);   
+            return "'" + JSON.stringify(result) + "'";   
           } else {
             return '';
           }
         });
         
+        console.log(cmdStr);
         exec(cmdStr, function(err, stdout, stderr) {
           if (err) {
             throw err;
