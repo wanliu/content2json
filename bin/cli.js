@@ -58,7 +58,11 @@ function main() {
         });
       });
     } else {
-      console.log(results);    
+      if (argv.count) {
+        console.log(results.length);
+      } else {
+        console.log(results);
+      }    
     }
   } catch(e) {
     console.error(e.stack);
