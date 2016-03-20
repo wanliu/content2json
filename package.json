@@ -1,7 +1,7 @@
 {
   "name": "content2json",
   "version": "1.0.0",
-  "description": "",
+  "description": "Convert static site generator framework Content md Data of file to Json format.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,8 +9,18 @@
   "bin": {
     "content2json": "./bin/cli.js"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "hugo",
+    "markdown",
+    "jekyll",
+    "octopress",
+    "json"
+  ],
+  "author": {
+    "name": "Hysios Hu",
+    "email": "hysios@gmail.com"
+  },
+  "license": "MIT",
   "dependencies": {
     "debug": "^2.2.0",
     "exec": "^0.2.1",
