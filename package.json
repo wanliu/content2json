@@ -1,6 +1,6 @@
 {
   "name": "content2json",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Convert static site generator framework Content md Data of file to Json format.",
   "main": "index.js",
   "scripts": {

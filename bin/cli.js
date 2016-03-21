@@ -25,6 +25,7 @@ function usage() {
            "   -e, --execute            Execute a shell script, or program with every json\n";
            "   --ignore null            Ignore parse value is null error\n";
            "   -v, --verbose            Print debugging information\n";
+           "   --format=json,pretty     Output Json Format\n"
 
   console.log(output);
 }
@@ -61,7 +62,8 @@ function main() {
       if (argv.count) {
         console.log(results.length);
       } else {
-        console.log(results);
+        output = JSON.stringify.apply(JSON, argv.format === 'pretty' ? [ results, null, 4] : [results] )
+        console.log(output);
       }    
     }
   } catch(e) {
